@@ -36,5 +36,5 @@ dropped.to_csv('cleanedFile.csv')
 ''' Die Funktion gibt das Dataframe zurueck.
     Relevant in anderen Dokumente, um den Dataframe zu erhalten'''
     
-def function getDataFrameKobeBryant():
+def getDataFrameKobeBryant():
     return dropped
