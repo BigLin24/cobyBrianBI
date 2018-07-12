@@ -47,4 +47,4 @@ def getDataFrameKobeBryant():
     return dropped
 
 def getDataFrameKobeBryantWithNaN():
-    return dropped
+    return data
