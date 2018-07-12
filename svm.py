@@ -7,16 +7,58 @@ Original Sources: http://scikit-learn.sourceforge.net/0.5/auto_examples/svm/plot
 
 import numpy as np
 import pylab as pl
-import data_Preperation-v2
+import dataPreperationv2
 from sklearn import svm, datasets
 
+
+"""
 # import some data to play with
 iris = datasets.load_iris()
+print(iris)
 X = iris.data[:, :2] # we only take the first two features. We could
-                     # avoid this ugly slicing by using a two-dim dataset
+   # avoid this ugly slicing by using a two-dim dataset
 Y = iris.target
-
 h=.02 # step size in the mesh
+
+"""
+
+
+data = getDataFrameKobeBryant()
+
+werte = []
+target = []
+
+i = 0
+
+while i < 50:
+    temp1 = []
+    
+    temp1.append(int(data['loc_x'].values[i]))
+    temp1.append(int(data['loc_y'].values[i]))
+    
+
+    
+    werte.append(temp1)
+    target.append(int(data['shot_made_flag'].values[i]))
+    
+    i = i + 1
+    print(i)
+
+
+print("Test")
+
+
+
+
+datas = datasets.base.Bunch(data=werte, target=target)
+print(datas)
+
+X = np.array(werte)[:,]
+
+Y = datas.target
+
+
+
 
 # we create an instance of SVM and fit out data. We do not scale our
 # data since we want to plot the support vectors

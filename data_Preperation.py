@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import numpy as np 
 import pandas as pd 
 import matplotlib.pyplot as plt
-%matplotlib inline
 
 
 
@@ -16,7 +18,7 @@ data.describe()# in dieser Schritt finden wir ,dass die missing Value in der Spa
 
  
 #Teilen die Daten in training data und test data ein
-import numpy as np
+import numpy as npqui
 data = pd.read_csv('data.csv')
 train_kobe=data[pd.notnull(data['shot_made_flag'])]
 test_kobe=data[pd.isnull(data['shot_made_flag'])]
