@@ -10,6 +10,9 @@ import pandas as pd
 actionType = pd.read_csv('actionType.csv')
 combinedShotType = pd.read_csv('combinedShotType.csv')
 shotType = pd.read_csv('shotType.csv')
+shotZoneArea = pd.read_csv('shotZoneArea.csv')
+season = pd.read_csv('shotZoneArea.csv')
+opponent = pd.read_csv('opponent.csv')
 
 def getIDforAction( name ):
     output = searchEngine(actionType, name)
@@ -23,6 +26,18 @@ def getIDforShotType( name ):
     output = searchEngine(shotType, name)
     return output
 
+def getIDforShotZoneArea( name ):
+    output = searchEngine(shotZoneArea, name)
+    return output
+
+def getIDforSeason( name ):
+    output = searchEngine(season, name)
+    return output
+
+def getIDforOpponent( name ):
+    output = searchEngine(opponent, name)
+    return output
+
 
 def searchEngine(dataFrame, name):
     i = 0
@@ -32,3 +47,8 @@ def searchEngine(dataFrame, name):
             return i
             
         i = i +1
+        
+        
+        
+        
+        

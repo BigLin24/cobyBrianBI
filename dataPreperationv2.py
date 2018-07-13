@@ -6,54 +6,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import setterID
 
-''' Laed die CSV Datei in das
-    Panda DataFrame "data" '''
-#data = pd.read_csv('data.csv')
-data = pd.read_csv('cleanedFileWithNaN.csv')
 
+data = pd.read_csv('data.csv')
+#data = pd.read_csv('cleanedFileWithNaN.csv')
 
-
-''' Fasst "minutes_remaining" und "secondas_remaining" zusammen
-    in der "Spalte" "remaining_time" im Dataframe dropped'''
 data['remaining_time'] = data['minutes_remaining'] * 60 + data['seconds_remaining']
 
-
-''' Berechnet die Spalte "dist" im Dataframe "dropped" durch:
-    (WURZEL von loc_x) HOCH 2 + (loc_y)HOCH 2) '''
-    
 data['dist'] = np.sqrt(data['loc_x']**2 + data['loc_y']**2)
-
-''' Speicher das Dataframe "dropped" in die datei  "cleanedFile.csv"'''
-data.to_csv('cleanedFileWithNaN.csv')
 
 dropped = data
 
-''' Loescht Eintraege bei welchen kein 
-    "shot_made_flag" vorhanden ist und speicher in das Dataframe
-    "dropped" ab'''
-dropped = dropped.dropna(subset=['shot_made_flag'])
-
-''' Speicher das Dataframe "Data" in die datei  "cleanedFile.csv"'''
-dropped.to_csv('cleanedFile.csv')
+dropped = data.dropna(subset=['shot_made_flag'])
 
 
 
-"""
-justDropped = data
-
-i = 0
-
-while i < len(data.index):
-    
-    if pd.isna(justDropped['shot_made_flag'].values[i]):
-        print("yes")
-        justDropped.drop(justDropped.index[i])
-        print(str(format(((i /len(data.index)) * 100), '.2f')  + "%"))
-        
-    i = i + 1
-
-justDropped.to_csv('justNaNFile.csv')
-"""
+def writeFiles():
+    data.to_csv('cleanedFileWithNaN.csv', index=False)
+    dropped.to_csv('cleanedFile.csv', index=False)
 
 
 def clearFile():
@@ -64,10 +33,16 @@ def clearFile():
         actionName = data.values[i][0]
         combinedShotType = data.values[i][1]
         shotType = data.values[i][15]
+        shotZoneArea = data.values[i][16]
+        season = data.values[i][11]
+        opponent = data.values[i][23]
         
         data.loc[i,'action_type'] = getIDforAction(actionName)
         data.loc[i,'combined_shot_type'] = getIDforCombinedShotType(combinedShotType)
-        data.loc[i,'shot_type'] = getIDforShotType(shotType)      
+        data.loc[i,'shot_type'] = getIDforShotType(shotType)
+        data.loc[i,'shot_zone_area'] = getIDforShotZoneArea(shotZoneArea)
+        data.loc[i,'season'] = getIDforSeason(season)
+        data.loc[i,'opponent'] = getIDforOpponent(opponent)
         
         print( str(   format((( i / n ) *100), '.2f')) + "%"  )
         
@@ -82,4 +57,21 @@ def getDataFrameKobeBryantWithNaN():
     return data
 
 def getDataFrameKobeBryantJustNaN():
-    return justDropped
+    i = 0
+    n = len(data.index)
+    
+    output = data
+    
+    while i < n:
+        
+        if not pd.isna(output['shot_made_flag'][i]):
+            output.drop([i], inplace=True)
+        
+        print( str(   format((( i / n ) *100), '.2f')) + "%"  )
+        
+        i = i + 1
+    
+    output1 = output.reset_index()
+    output1.drop(columns='index', inplace=True)
+    
+    return output1

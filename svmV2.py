@@ -18,63 +18,21 @@ from sklearn import svm, datasets, model_selection, linear_model, tree, \
 import dataPreperationv2
 
 
-
-"""
-# import some data to play with
-iris = datasets.load_iris()
-print(iris)
-X = iris.data[:, :2] # we only take the first two features. We could
-   # avoid this ugly slicing by using a two-dim dataset
-Y = iris.target
-h=.02 # step size in the mesh
-
-"""
-
 data = getDataFrameKobeBryant()
 predictData = getDataFrameKobeBryantWithNaN()
 
 werte = []
-target = []
+klassen = []
 predict = []
-i = 0
-
-#while i < len(data.index):
 
 
-while i < len(data.index):
-    temp1 = []
-    
-    temp1.append(float(data['loc_x'].values[i] / 10))
-    temp1.append(float(data['loc_y'].values[i] / 10))
-    temp1.append(float(data['action_type'].values[i]))
-    temp1.append(float(data['period'].values[i]))
-    temp1.append(float(data['combined_shot_type'].values[i]))
-    temp1.append(float(data['shot_type'].values[i]))
-    
-    werte.append(temp1)
-    target.append(int(data['shot_made_flag'].values[i]))
-    i = i + 1
-
-
-i = 0
-
-while i < len(predictData.index):
-    temp1 = []
-    
-    temp1.append(float(predictData['loc_x'].values[i] / 10))
-    temp1.append(float(predictData['loc_y'].values[i] / 10))
-    
-    predict.append(temp1)
-    
-    i = i + 1
-
+werte = convertToArray(data, True)
+predict = convertToArray(predictData, False)
 
 
 x_train, x_test, y_train, y_test = \
     model_selection.train_test_split(np.array(werte)[:,],\
-                                     target, test_size=0.33)
-
-
+                                     klassen, test_size=0.33)
 
 
 # Moegliche Werte
@@ -98,25 +56,48 @@ naveB = naive_bayes.GaussianNB()
 qda = discriminant_analysis.QuadraticDiscriminantAnalysis()
 
 
+def convertToArray(data, y):
+    i = 0
+    outputArray = []
+    
+    while i < len(data.index):
+        temp1 = []
+        
+        temp1.append(float(data['loc_x'].values[i] / 10))
+        temp1.append(float(data['loc_y'].values[i] / 10))
+        temp1.append(float(data['action_type'].values[i]))
+        temp1.append(float(data['combined_shot_type'].values[i]))
+        temp1.append(float(data['period'].values[i]))
+        temp1.append(float(data['playoffs'].values[i]))
+        temp1.append(float(data['shot_distance'].values[i]))
+        temp1.append(float(data['season'].values[i]))
+        temp1.append(float(data['shot_type'].values[i]))
+        temp1.append(float(data['shot_zone_area'].values[i]))
+        temp1.append(float(data['remaining_time'].values[i]))
+        
+        if y:
+            klassen.append(int(data['shot_made_flag'].values[i]))
+            
+        outputArray.append(temp1)
+        
+        i = i + 1
+        
+    return outputArray
+
+
 def calWithLinearSVC():
     # Normal -> Linear   
     svc3.fit(X, y)
-    z3 = svc3.predict(uv)
-    z3 = z3.reshape(u.shape)
     print("Finish LinearSVC: svc3")
 
 def calWithSVCnormaleKernel():
     # Kernel Default    
     svc2.fit(X, y)
-    z2 = svc2.predict(uv)
-    z2 = z2.reshape(u.shape)
     print("Finish KernelSVC: svc2")
 
 def calWithSVCpolyKernel():
     # Kernel mit Poly 
     svc.fit(X, y)
-    z = svc.predict(uv)
-    z = z.reshape(u.shape)
     print("Finish PolyKernelSVC: svc")
 
 def calLinearRegression():
