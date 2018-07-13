@@ -34,6 +34,7 @@ def clearFile():
         combinedShotType = data.values[i][1]
         shotType = data.values[i][15]
         shotZoneArea = data.values[i][16]
+        shotZoneRange = data.values[i][18]
         season = data.values[i][11]
         opponent = data.values[i][23]
         
@@ -41,6 +42,7 @@ def clearFile():
         data.loc[i,'combined_shot_type'] = getIDforCombinedShotType(combinedShotType)
         data.loc[i,'shot_type'] = getIDforShotType(shotType)
         data.loc[i,'shot_zone_area'] = getIDforShotZoneArea(shotZoneArea)
+        data.loc[i,'shot_zone_range'] = getIDforShotZoneRange(shotZoneRange)
         data.loc[i,'season'] = getIDforSeason(season)
         data.loc[i,'opponent'] = getIDforOpponent(opponent)
         

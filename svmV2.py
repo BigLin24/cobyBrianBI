@@ -70,10 +70,12 @@ def convertToArray(data, y):
         temp1.append(float(data['period'].values[i]))
         temp1.append(float(data['playoffs'].values[i]))
         temp1.append(float(data['shot_distance'].values[i]))
-        temp1.append(float(data['season'].values[i]))
         temp1.append(float(data['shot_type'].values[i]))
         temp1.append(float(data['shot_zone_area'].values[i]))
+        temp1.append(float(data['shot_zone_range'].values[i]))
         temp1.append(float(data['remaining_time'].values[i]))
+        temp1.append(float(data['season'].values[i]))
+        temp1.append(float(data['opponent'].values[i]))
         
         if y:
             klassen.append(int(data['shot_made_flag'].values[i]))
