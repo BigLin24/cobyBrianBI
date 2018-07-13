@@ -22,7 +22,6 @@ h=.02 # step size in the mesh
 
 """
 
-
 data = getDataFrameKobeBryant()
 
 werte = []
@@ -30,34 +29,25 @@ target = []
 
 i = 0
 
-while i < 50:
+#while i < len(data.index):
+while i < 10000:
     temp1 = []
     
-    temp1.append(int(data['loc_x'].values[i]))
-    temp1.append(int(data['loc_y'].values[i]))
-    
-
+    temp1.append(data['loc_x'].values[i] / 100)
+    temp1.append(data['loc_y'].values[i] / 100)
     
     werte.append(temp1)
     target.append(int(data['shot_made_flag'].values[i]))
     
     i = i + 1
-    print(i)
 
 
 print("Test")
 
 
 
-
-datas = datasets.base.Bunch(data=werte, target=target)
-print(datas)
-
 X = np.array(werte)[:,]
-
-Y = datas.target
-
-
+Y = target
 
 
 # we create an instance of SVM and fit out data. We do not scale our

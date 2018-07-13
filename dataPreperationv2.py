@@ -12,8 +12,6 @@ data = pd.read_csv('data.csv')
 
 
 
-
-
 ''' Fasst "minutes_remaining" und "secondas_remaining" zusammen
     in der "Spalte" "remaining_time" im Dataframe dropped'''
 data['remaining_time'] = data['minutes_remaining'] * 60 + data['seconds_remaining']
@@ -27,19 +25,32 @@ data['dist'] = np.sqrt(data['loc_x']**2 + data['loc_y']**2)
 ''' Speicher das Dataframe "dropped" in die datei  "cleanedFile.csv"'''
 data.to_csv('cleanedFileWithNaN.csv')
 
-
+dropped = data
 
 ''' Loescht Eintraege bei welchen kein 
     "shot_made_flag" vorhanden ist und speicher in das Dataframe
     "dropped" ab'''
-dropped = data.dropna(subset=['shot_made_flag'])
+dropped = dropped.dropna(subset=['shot_made_flag'])
 
 ''' Speicher das Dataframe "Data" in die datei  "cleanedFile.csv"'''
 dropped.to_csv('cleanedFile.csv')
 
+"""
+justDropped = data
 
+i = 0
 
+while i < len(data.index):
+    
+    if pd.isna(justDropped['shot_made_flag'].values[i]):
+        print("yes")
+        justDropped.drop(justDropped.index[i])
+        print(str(format(((i /len(data.index)) * 100), '.2f')  + "%"))
+        
+    i = i + 1
 
+justDropped.to_csv('justNaNFile.csv')
+"""
 ''' Die Funktion gibt das Dataframe zurueck.
     Relevant in anderen Dokumente, um den Dataframe zu erhalten'''
     
@@ -48,3 +59,6 @@ def getDataFrameKobeBryant():
 
 def getDataFrameKobeBryantWithNaN():
     return data
+
+def getDataFrameKobeBryantJustNaN():
+    return justDropped
