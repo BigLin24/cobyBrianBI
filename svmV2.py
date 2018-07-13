@@ -30,13 +30,6 @@ h=.02 # step size in the mesh
 
 """
 
-
-
-
-
-
-
-
 data = getDataFrameKobeBryant()
 predictData = getDataFrameKobeBryantWithNaN()
 
@@ -46,11 +39,17 @@ predict = []
 i = 0
 
 #while i < len(data.index):
+
+
 while i < len(data.index):
     temp1 = []
     
     temp1.append(float(data['loc_x'].values[i] / 10))
     temp1.append(float(data['loc_y'].values[i] / 10))
+    temp1.append(float(data['action_type'].values[i]))
+    temp1.append(float(data['period'].values[i]))
+    temp1.append(float(data['combined_shot_type'].values[i]))
+    temp1.append(float(data['shot_type'].values[i]))
     
     werte.append(temp1)
     target.append(int(data['shot_made_flag'].values[i]))

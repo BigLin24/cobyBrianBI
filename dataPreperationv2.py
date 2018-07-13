@@ -8,7 +8,8 @@ import setterID
 
 ''' Laed die CSV Datei in das
     Panda DataFrame "data" '''
-data = pd.read_csv('data.csv')
+#data = pd.read_csv('data.csv')
+data = pd.read_csv('cleanedFileWithNaN.csv')
 
 
 
@@ -21,30 +22,6 @@ data['remaining_time'] = data['minutes_remaining'] * 60 + data['seconds_remainin
     (WURZEL von loc_x) HOCH 2 + (loc_y)HOCH 2) '''
     
 data['dist'] = np.sqrt(data['loc_x']**2 + data['loc_y']**2)
-
-
-
-
-def clearFile():
-    i = 0
-    n = len(data.index)
-    
-    while i < n:
-        actionName = data.values[i][0]
-        combinedShotType = data.values[i][1]
-        
-        data.loc[i,'action_type'] = getIDforAction(actionName)
-        data.loc[i,'combined_shot_type'] = getIDforCombinedShotType(combinedShotType)
-        
-        print(data.values[i][0])
-        
-        
-        
-        print( str(   format((( i / n ) *100), '.2f')) + "%"  )
-        i = i + 1
-    
-
-
 
 ''' Speicher das Dataframe "dropped" in die datei  "cleanedFile.csv"'''
 data.to_csv('cleanedFileWithNaN.csv')
@@ -79,10 +56,24 @@ justDropped.to_csv('justNaNFile.csv')
 """
 
 
+def clearFile():
+    i = 0
+    n = len(data.index)
+    
+    while i < n:
+        actionName = data.values[i][0]
+        combinedShotType = data.values[i][1]
+        shotType = data.values[i][15]
+        
+        data.loc[i,'action_type'] = getIDforAction(actionName)
+        data.loc[i,'combined_shot_type'] = getIDforCombinedShotType(combinedShotType)
+        data.loc[i,'shot_type'] = getIDforShotType(shotType)      
+        
+        print( str(   format((( i / n ) *100), '.2f')) + "%"  )
+        
+        i = i +1
 
 
-''' Die Funktion gibt das Dataframe zurueck.
-    Relevant in anderen Dokumente, um den Dataframe zu erhalten'''
     
 def getDataFrameKobeBryant():
     return dropped

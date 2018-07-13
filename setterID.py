@@ -9,6 +9,7 @@ import pandas as pd
 
 actionType = pd.read_csv('actionType.csv')
 combinedShotType = pd.read_csv('combinedShotType.csv')
+shotType = pd.read_csv('shotType.csv')
 
 def getIDforAction( name ):
     output = searchEngine(actionType, name)
@@ -16,6 +17,10 @@ def getIDforAction( name ):
 
 def getIDforCombinedShotType( name ):
     output = searchEngine(combinedShotType, name)
+    return output
+
+def getIDforShotType( name ):
+    output = searchEngine(shotType, name)
     return output
 
 
