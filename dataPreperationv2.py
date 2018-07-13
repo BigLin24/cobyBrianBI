@@ -31,7 +31,10 @@ def clearFile():
     
     while i < n:
         actionName = data.values[i][0]
+        combinedShotType = data.values[i][1]
+        
         data.loc[i,'action_type'] = getIDforAction(actionName)
+        data.loc[i,'combined_shot_type'] = getIDforCombinedShotType(combinedShotType)
         
         print(data.values[i][0])
         
