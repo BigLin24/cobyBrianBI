@@ -4,7 +4,7 @@
 import numpy as np 
 import pandas as pd 
 import matplotlib.pyplot as plt
-
+import setterID
 
 ''' Laed die CSV Datei in das
     Panda DataFrame "data" '''
@@ -22,6 +22,27 @@ data['remaining_time'] = data['minutes_remaining'] * 60 + data['seconds_remainin
     
 data['dist'] = np.sqrt(data['loc_x']**2 + data['loc_y']**2)
 
+
+
+
+def clearFile():
+    i = 0
+    n = len(data.index)
+    
+    while i < n:
+        actionName = data.values[i][0]
+        data.loc[i,'action_type'] = getIDforAction(actionName)
+        
+        print(data.values[i][0])
+        
+        
+        
+        print( str(   format((( i / n ) *100), '.2f')) + "%"  )
+        i = i + 1
+    
+
+
+
 ''' Speicher das Dataframe "dropped" in die datei  "cleanedFile.csv"'''
 data.to_csv('cleanedFileWithNaN.csv')
 
@@ -34,6 +55,8 @@ dropped = dropped.dropna(subset=['shot_made_flag'])
 
 ''' Speicher das Dataframe "Data" in die datei  "cleanedFile.csv"'''
 dropped.to_csv('cleanedFile.csv')
+
+
 
 """
 justDropped = data
@@ -51,6 +74,10 @@ while i < len(data.index):
 
 justDropped.to_csv('justNaNFile.csv')
 """
+
+
+
+
 ''' Die Funktion gibt das Dataframe zurueck.
     Relevant in anderen Dokumente, um den Dataframe zu erhalten'''
     
