@@ -31,4 +31,3 @@ def plot(obj, x_plot, y_plot, filename):
     X = prepareData(x_plot)
     obj.fit(X, y_plot)
     plotIt(obj, X, y_plot, filename + ".jpg")
-    
