@@ -23,4 +23,4 @@ def predictNeuralNetwork(x_predict):
     return yTarget
 
 def plotNeuralNetwork(x_plot, y_plot):
-    plot(obj, x_plot, y_plot, "NeuralNetwork.jpg")
+    plot(obj, x_plot, y_plot, "NeuralNetwork")
