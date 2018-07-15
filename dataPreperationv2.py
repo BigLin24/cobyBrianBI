@@ -7,16 +7,16 @@ import matplotlib.pyplot as plt
 import setterID
 
 
-data = pd.read_csv('data.csv')
-#data = pd.read_csv('cleanedFileWithNaN.csv')
+#data = pd.read_csv('data.csv')
+data = pd.read_csv('cleanedFileWithNaN-v1.csv')
+
 
 data['remaining_time'] = data['minutes_remaining'] * 60 + data['seconds_remaining']
-
 data['dist'] = np.sqrt(data['loc_x']**2 + data['loc_y']**2)
 
 dropped = data
+dropped = dropped.dropna(subset=['shot_made_flag'])
 
-dropped = data.dropna(subset=['shot_made_flag'])
 
 
 
@@ -51,14 +51,7 @@ def clearFile():
         i = i +1
 
 
-    
-def getDataFrameKobeBryant():
-    return dropped
-
-def getDataFrameKobeBryantWithNaN():
-    return data
-
-def getDataFrameKobeBryantJustNaN():
+def clearJustNaN():
     i = 0
     n = len(data.index)
     
@@ -77,3 +70,14 @@ def getDataFrameKobeBryantJustNaN():
     output1.drop(columns='index', inplace=True)
     
     return output1
+
+    
+def getDataFrameKobeBryant():
+    return dropped
+
+def getDataFrameKobeBryantWithNaN():
+    return data
+
+def getDataFrameKobeBryantJustNaN():
+    return justNaN
+

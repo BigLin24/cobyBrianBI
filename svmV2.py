@@ -26,35 +26,6 @@ klassen = []
 predict = []
 
 
-werte = convertToArray(data, True)
-predict = convertToArray(predictData, False)
-
-
-x_train, x_test, y_train, y_test = \
-    model_selection.train_test_split(np.array(werte)[:,],\
-                                     klassen, test_size=0.33)
-
-
-# Moegliche Werte
-X = x_train
-# Klassen
-y = y_train
-
-Xpredict = np.array(predict)[:,]
-
-svc3 = svm.LinearSVC()
-svc2 = svm.SVC()
-svc = svm.SVC(kernel='poly')
-regr = linear_model.LinearRegression()
-clf = tree.DecisionTreeClassifier()
-nn = neural_network.MLPClassifier()
-nb = neighbors.KNeighborsClassifier()
-gp = gaussian_process.GaussianProcessClassifier()
-rf = ensemble.RandomForestClassifier()
-ada = ensemble.AdaBoostClassifier()
-naveB = naive_bayes.GaussianNB()
-qda = discriminant_analysis.QuadraticDiscriminantAnalysis()
-
 
 def convertToArray(data, y):
     i = 0
@@ -85,6 +56,43 @@ def convertToArray(data, y):
         i = i + 1
         
     return outputArray
+
+
+
+
+
+
+werte = convertToArray(data, True)
+predict = convertToArray(predictData, False)
+
+
+x_train, x_test, y_train, y_test = \
+    model_selection.train_test_split(np.array(werte)[:,],\
+                                     klassen, test_size=0.33)
+
+
+# Moegliche Werte
+X = x_train
+# Klassen
+y = y_train
+
+Xpredict = np.array(predict)[:,]
+
+svc3 = svm.LinearSVC()
+svc2 = svm.SVC()
+svc = svm.SVC(kernel='poly')
+regr = linear_model.LinearRegression()
+clf = tree.DecisionTreeClassifier()
+nn = neural_network.MLPClassifier()
+nb = neighbors.KNeighborsClassifier()
+gp = gaussian_process.GaussianProcessClassifier()
+rf = ensemble.RandomForestClassifier()
+ada = ensemble.AdaBoostClassifier()
+naveB = naive_bayes.GaussianNB()
+qda = discriminant_analysis.QuadraticDiscriminantAnalysis()
+
+
+
 
 
 def calWithLinearSVC():
@@ -167,6 +175,8 @@ def calWithAll():
     t10.start()
     t11.start()
     t12.start()
+
+
 
 def testAll():
     checkThread(t12)
