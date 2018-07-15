@@ -22,5 +22,8 @@ def predictLinearModel(x_predict):
     yTarget = predictNaNx(obj, x_predict)
     return yTarget
 
+def testLinearModel(x_train, y_train, x_test, y_test):
+    testing(obj, x_train, y_train, x_test, y_test)
+
 def plotLinearModel(x_plot, y_plot):
     plot(obj, x_plot, y_plot, "LinearModel")

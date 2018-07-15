@@ -22,6 +22,13 @@ def predictDecisionTree(x_predict):
     yTarget = predictNaNx(obj, x_predict)
     return yTarget
 
+def testDecisionTree(x_train, y_train, x_test, y_test):
+    testing(obj, x_train, y_train, x_test, y_test)
+
+def crossValDecisionTree(x_train, y_train, iterable):
+    output = crossVal(obj, x_train, y_train, iterable)
+    return output
+
 def plotDecisionTree(x_plot, y_plot):
     plot(obj, x_plot, y_plot, "DecisionTree.jpg")
     

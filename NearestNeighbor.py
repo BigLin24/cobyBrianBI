@@ -30,6 +30,9 @@ def predictNearestNeighbors(x_predict):
     yTarget = nb.predict(x_predict)
     return yTarget
 
+def testNearestNeighbors(x_train, y_train):
+    testing(nb, x_train, y_train)
+
 def plotNearestNeighbors(x_plot, y_plot):
     X = prepareData(x_plot)
     nb.fit(X, y_plot)

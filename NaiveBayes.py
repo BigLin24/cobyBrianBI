@@ -23,5 +23,8 @@ def predictNaiveBayes(x_predict):
     yTarget = predictNaNx(obj, x_predict)
     return yTarget
 
+def testNaiveBayes(x_train, y_train, x_test, y_test):
+    testing(obj, x_train, y_train, x_test, y_test)
+
 def plotNaiveBayes(x_plot, y_plot):
     plot(obj, x_plot, y_plot, "NaiveBayes")
