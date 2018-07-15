@@ -25,5 +25,9 @@ def predictNeuralNetwork(x_predict):
 def testNeuralNetwork(x_train, y_train, x_test, y_test):
     testing(obj, x_train, y_train, x_test, y_test)
 
+def crossValNeuralNetwork(x_train, y_train, iterable):
+    output = crossVal(obj, x_train, y_train, iterable)
+    return output
+
 def plotNeuralNetwork(x_plot, y_plot):
     plot(obj, x_plot, y_plot, "NeuralNetwork")
