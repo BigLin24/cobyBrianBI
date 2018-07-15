@@ -15,11 +15,7 @@ data = pd.read_csv('cleanedFileWithoutNaN.csv')
 predictData = pd.read_csv('cleanedFileJustNaN.csv')
 
 
-werte = []
-klassen = []
-predict = []
-
-def convertToArray(data, y):
+def convertToArrayData(data):
     i = 0
     outputArray = []
     
@@ -39,9 +35,6 @@ def convertToArray(data, y):
         temp1.append(float(data['remaining_time'].values[i]))
         temp1.append(float(data['season'].values[i]))
         temp1.append(float(data['opponent'].values[i]))
-        
-        if y:
-            klassen.append(int(data['shot_made_flag'].values[i]))
             
         outputArray.append(temp1)
         
@@ -50,8 +43,22 @@ def convertToArray(data, y):
     return outputArray
 
 
-werte = convertToArray(data, True)
-predict = convertToArray(predictData, False)
+
+def convertToArrayClass(data):
+    i = 0
+    outputArray = []
+    
+    while i < len(data.index):
+        outputArray.append(int(data['shot_made_flag'].values[i]))
+        i = i + 1
+
+    return outputArray
+
+
+
+werte = convertToArrayData(data)
+klassen = convertToArrayClass(data)
+predict = convertToArrayData(predictData)
 
 
 x_train, x_test, y_train, y_test = \
