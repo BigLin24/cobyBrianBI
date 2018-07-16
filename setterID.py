@@ -44,6 +44,38 @@ def getIDforOpponent( name ):
     return output
 
 
+
+def getActionByID( ID ):
+    output = searchEngineReverse(actionType, ID)
+    return output
+
+def getCombinedShotTypeByID( ID ):
+    output = searchEngineReverse(combinedShotType, ID)
+    return output
+
+def getShotTypeByID( ID ):
+    output = searchEngineReverse(shotType, ID)
+    return output
+
+def getShotZoneAreaByID( ID ):
+    output = searchEngineReverse(shotZoneArea, ID)
+    return output
+
+def getShotZoneRangeByID( ID ):
+    output = searchEngineReverse(shotZoneRange, ID)
+    return output
+
+def getSeasonByID( ID ):
+    output = searchEngineReverse(season, ID)
+    return output
+
+def getOpponentByID( ID ):
+    output = searchEngineReverse(opponent, ID)
+    return output
+
+
+
+
 def searchEngine(dataFrame, name):
     i = 0
     
@@ -53,7 +85,16 @@ def searchEngine(dataFrame, name):
             
         i = i +1
         
-        
+
+def searchEngineReverse(dataFrame, ID):
+    i = 0
+    
+    while i < len( dataFrame.index):
+        if ID == dataFrame.index[i]:
+            output = dataFrame.values[i][0]
+            return output
+            
+        i = i +1
         
         
         

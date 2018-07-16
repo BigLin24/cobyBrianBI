@@ -6,7 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import setterID
 
-
 #data = pd.read_csv('data.csv')
 data = pd.read_csv('cleanedFileWithNaN-v1.csv')
 
@@ -49,6 +48,35 @@ def clearFile():
         print( str(   format((( i / n ) *100), '.2f')) + "%"  )
         
         i = i +1
+
+
+def restoreFile(data):
+    i = 0
+    n = len(data.index)
+    
+    while i < n:
+        actionName = data.values[i][0]
+        combinedShotType = data.values[i][1]
+        shotType = data.values[i][15]
+        shotZoneArea = data.values[i][16]
+        shotZoneRange = data.values[i][18]
+        season = data.values[i][11]
+        opponent = data.values[i][23]
+        
+        data.loc[i,'action_type'] = getActionByID(actionName)
+        data.loc[i,'combined_shot_type'] = getCombinedShotTypeByID(combinedShotType)
+        data.loc[i,'shot_type'] = getShotTypeByID(shotType)
+        data.loc[i,'shot_zone_area'] = getShotZoneAreaByID(shotZoneArea)
+        data.loc[i,'shot_zone_range'] = getShotZoneRangeByID(shotZoneRange)
+        data.loc[i,'season'] = getSeasonByID(season)
+        data.loc[i,'opponent'] = getOpponentByID(opponent)
+        
+        print( str(   format((( i / n ) *100), '.2f')) + "%"  )
+        
+        i = i +1
+        
+    return data
+
 
 
 def clearJustNaN():

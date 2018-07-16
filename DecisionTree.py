@@ -35,6 +35,9 @@ def handOutDecisionTree(x_train, y_train):
     output = handOut(obj, x_train, y_train)
     return output
 
+def confusionMatrixDecisionTree(x_train, y_train, x_test, y_test):
+    output = confusionMatrix(obj, x_train, y_train, x_test, y_test)
+    return output
 
 def plotDecisionTree(x_plot, y_plot):
     plot(obj, x_plot, y_plot, "DecisionTree.jpg")

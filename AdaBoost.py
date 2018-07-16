@@ -14,6 +14,7 @@ obj1 = obj
 
 def fitAdaBoost(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
+    return obj
 
 def scoreAdaBoost(x_test, y_test):
     output = score(obj, x_test, y_test)
@@ -33,6 +34,10 @@ def crossValAdaBoost(x_train, y_train, iterable):
 
 def handOutAdaBoost(x_train, y_train):
     output = handOut(obj, x_train, y_train)
+    return output
+
+def confusionMatrixAdaBoost(x_train, y_train, x_test, y_test):
+    output = confusionMatrix(obj, x_train, y_train, x_test, y_test)
     return output
 
 def plotAdaBoost(x_plot, y_plot):

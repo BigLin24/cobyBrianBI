@@ -13,6 +13,7 @@ import plotter
 
 from matplotlib import colors
 from sklearn.model_selection import cross_val_score
+from sklearn import metrics
 
 def fit(obj, x_train, y_train):
     start_time = time.time()
@@ -37,6 +38,13 @@ def plot(obj, x_plot, y_plot, filename):
 def crossVal(obj, x_train, y_train, iterable):
     output = cross_val_score(obj, x_train, y_train, cv=iterable)
     return output
+
+def confusionMatrix(obj, x_train, y_train, x_test, y_test):
+    obj1 = fit(obj, x_train, y_train)
+    predictedY = predictNaNx(obj1, x_test)
+    output = metrics.confusion_matrix(y_test, predictedY)
+    return output
+
 
 def testing(obj, x_train, y_train, nichtsX, nichtsY):
     obj1 = fit(obj, x_train, y_train)
