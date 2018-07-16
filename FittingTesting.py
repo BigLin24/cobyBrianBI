@@ -36,7 +36,7 @@ def startFitting(data):
                                              np.array(klassen), test_size=0.33)
             
             
-            scoreKernel, handoutKernel = testAdaBoost(x_train, y_train, x_test, y_test)
+            scoreKernel, handoutKernel = testKernelSVM(x_train, y_train, x_test, y_test)
             resFittitng.loc[i,'Score'] = scoreKernel
             resFittitng.loc[i,'HandOut'] = handoutKernel
 
