@@ -38,32 +38,39 @@ def crossVal(obj, x_train, y_train, iterable):
     output = cross_val_score(obj, x_train, y_train, cv=iterable)
     return output
 
-def handOut(obj, x_train, y_train):
+def testing(obj, x_train, y_train, nichtsX, nichtsY):
+    obj1 = fit(obj, x_train, y_train)
+    
     xTrain, xTest = np.split(x_train, 2)
     yTrain, yTest = np.split(y_train, 2)
 
 
     obj1 = fit(obj, xTrain, yTrain)
-    
-
+    yTargetTrain = obj1.predict(xTrain)
     yTarget = obj1.predict(xTest)
+    
     
     i = 0
     n = 0
+    m = 0
     
     while i < len(yTest):
         if yTest[i]== yTarget[i]:
             n = n + 1
+            
+        if yTargetTrain[i] == yTrain[i]:
+            m = m +1
+            
         i = i + 1
     
-    output = n / i
-    print(str(output))
-    return output
+    holdout = n / i
+    training = m / i
 
+    return holdout, training
 
+"""
 def testing(obj, x_train, y_train, x_test, y_test):
     obj1 = fit(obj, x_train, y_train)
     scoreRes = score(obj1, x_test, y_test)
     handoutRes = handOut(obj1, x_train, y_train)
-    return scoreRes, handoutRes
-    
+    return scoreRes, handoutRes"""

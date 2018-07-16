@@ -16,14 +16,14 @@ import RandomForest
 
 data = pd.read_csv('cleanedFileWithoutNaN.csv')
 
-resFittitng = pd.DataFrame(columns=['Score', 'HandOut'])
+resFittitng = pd.DataFrame(columns=['HandOut', 'Training'])
 
 
 
 
 def startFitting(data):
     i = 0
-    n = 1000
+    n = 100
     outputArray = []
     klassen = []
     
@@ -31,18 +31,17 @@ def startFitting(data):
         temp1 = []
         
         if i >=  n:
-            x_train, x_test, y_train, y_test = \
-            model_selection.train_test_split(np.array(outputArray)[:,],\
-                                             np.array(klassen), test_size=0.33)
             
+            x = np.array(outputArray)[:,]
+            y = np.array(klassen)
             
-            scoreKernel, handoutKernel = testKernelSVM(x_train, y_train, x_test, y_test)
-            resFittitng.loc[i,'Score'] = scoreKernel
+            handoutKernel, trainging  = testKernelSVM(x, y, x, y)
+            resFittitng.loc[i,'Training'] = trainging
             resFittitng.loc[i,'HandOut'] = handoutKernel
 
             
             
-            n = n + 1000
+            n = n + 100
 
         
         
