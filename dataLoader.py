@@ -63,7 +63,7 @@ predict = convertToArrayData(predictData)
 
 x_train, x_test, y_train, y_test = \
     model_selection.train_test_split(np.array(werte)[:,],\
-                                     klassen, test_size=0.33)
+                                     np.array(klassen), test_size=0.33)
 
 
 

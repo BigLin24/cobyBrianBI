@@ -16,17 +16,23 @@ def fitAdaBoost(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
 
 def scoreAdaBoost(x_test, y_test):
-    score(obj, x_test, y_test)
+    output = score(obj, x_test, y_test)
+    return output
     
 def predictAdaBoost(x_predict):
     yTarget = predictNaNx(obj, x_predict)
     return yTarget
 
 def testAdaBoost(x_train, y_train, x_test, y_test):
-    testing(obj, x_train, y_train, x_test, y_test)
+    output = testing(obj, x_train, y_train, x_test, y_test)
+    return output
 
 def crossValAdaBoost(x_train, y_train, iterable):
     output = crossVal(obj, x_train, y_train, iterable)
+    return output
+
+def handOutAdaBoost(x_train, y_train):
+    output = handOut(obj, x_train, y_train)
     return output
 
 def plotAdaBoost(x_plot, y_plot):

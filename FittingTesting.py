@@ -16,14 +16,14 @@ import RandomForest
 
 data = pd.read_csv('cleanedFileWithoutNaN.csv')
 
-kernelRes = pd.DataFrame(columns=['Rows', 'Score', 'Testing'])
-decisionTreeRes = pd.DataFrame(columns=['Rows', 'Score', 'Testing'])
-randomForestRes = pd.DataFrame(columns=['Rows', 'Score', 'Testing'])
+resFittitng = pd.DataFrame(columns=['Score', 'HandOut'])
+
+
 
 
 def startFitting(data):
     i = 0
-    n = 500
+    n = 1000
     outputArray = []
     klassen = []
     
@@ -33,25 +33,16 @@ def startFitting(data):
         if i >=  n:
             x_train, x_test, y_train, y_test = \
             model_selection.train_test_split(np.array(outputArray)[:,],\
-                                             klassen, test_size=0.33)
-            
-            kernelRes.loc[i,'Rows'] = i
-            fitKernelSVM(x_train, y_train)
-            kernelRes.loc[i,'Score'] = scoreKernelSVM(x_test, y_test)
-            kernelRes.loc[i,'Testing'] = testKernelSVM(x_train, y_train, x_test, y_test)            
-            
-            decisionTreeRes.loc[i,'Rows'] = i
-            fitDecisionTree(x_train, y_train)
-            decisionTreeRes.loc[i,'Score'] = scoreDecisionTree(x_test, y_test)
-            decisionTreeRes.loc[i,'Testing'] = testDecisionTree(x_train, y_train, x_test, y_test)
-            
-            randomForestRes.loc[i,'Rows'] = i
-            fitRandomForest(x_train, y_train)
-            randomForestRes.loc[i,'Score'] = scoreRandomForest(x_test, y_test)
-            randomForestRes.loc[i,'Testing'] = testRandomForest(x_train, y_train, x_test, y_test)
+                                             np.array(klassen), test_size=0.33)
             
             
-            n = n + 500
+            scoreKernel, handoutKernel = testAdaBoost(x_train, y_train, x_test, y_test)
+            resFittitng.loc[i,'Score'] = scoreKernel
+            resFittitng.loc[i,'HandOut'] = handoutKernel
+
+            
+            
+            n = n + 1000
 
         
         
@@ -74,3 +65,5 @@ def startFitting(data):
         
         i = i + 1
         
+    resFittitng.to_csv('fitting.csv')
+

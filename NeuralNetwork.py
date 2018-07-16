@@ -16,7 +16,8 @@ def fitNeuralNetwork(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
 
 def scoreNeuralNetwork(x_test, y_test):
-    score(obj, x_test, y_test)
+    output = score(obj, x_test, y_test)
+    return output
     
 def predictNeuralNetwork(x_predict):
     yTarget = predictNaNx(obj, x_predict)
@@ -27,6 +28,10 @@ def testNeuralNetwork(x_train, y_train, x_test, y_test):
 
 def crossValNeuralNetwork(x_train, y_train, iterable):
     output = crossVal(obj, x_train, y_train, iterable)
+    return output
+
+def handOutNeuralNetwork(x_train, y_train):
+    output = handOut(obj, x_train, y_train)
     return output
 
 def plotNeuralNetwork(x_plot, y_plot):

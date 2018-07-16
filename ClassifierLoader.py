@@ -17,12 +17,12 @@ from sklearn.model_selection import cross_val_score
 def fit(obj, x_train, y_train):
     start_time = time.time()
     obj.fit(x_train, y_train)
-    print("Finish")
-    print("--- %s seconds ---" % (time.time() - start_time))
+    #print("Finish")
+    #print("--- %s seconds ---" % (time.time() - start_time))
     return obj
 
 def score(obj, x_test, y_test):
-    print("Score: " + str(obj.score(x_test, y_test)))
+    #print("Score: " + str(obj.score(x_test, y_test)))
     return obj.score(x_test, y_test)
 
 def predictNaNx(obj, x_predict):
@@ -38,20 +38,32 @@ def crossVal(obj, x_train, y_train, iterable):
     output = cross_val_score(obj, x_train, y_train, cv=iterable)
     return output
 
+def handOut(obj, x_train, y_train):
+    xTrain, xTest = np.split(x_train, 2)
+    yTrain, yTest = np.split(y_train, 2)
 
-def testing(obj, x_train, y_train, x_test, y_test):
-    obj1 = fit(obj, x_train, y_train)
-    score(obj1, x_test, y_test)
-    yTarget = obj1.predict(x_train)
+
+    obj1 = fit(obj, xTrain, yTrain)
+    
+
+    yTarget = obj1.predict(xTest)
     
     i = 0
     n = 0
     
-    while i < len(y_train):
-        if y_train[i]== yTarget[i]:
+    while i < len(yTest):
+        if yTest[i]== yTarget[i]:
             n = n + 1
         i = i + 1
     
     output = n / i
     print(str(output))
     return output
+
+
+def testing(obj, x_train, y_train, x_test, y_test):
+    obj1 = fit(obj, x_train, y_train)
+    scoreRes = score(obj1, x_test, y_test)
+    handoutRes = handOut(obj1, x_train, y_train)
+    return scoreRes, handoutRes
+    
