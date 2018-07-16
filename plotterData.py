@@ -56,17 +56,18 @@ def getOpponent(inputDataFrame):
     return output
 
 
-def getTypes(inputDataFrame, dataFrame, rowName):
+def getTypes(classes, dataFrame, rowName):
     output = pd.DataFrame(columns=[rowName, 'Anzahl'])
     
     i = 0
     
-    while i < len(inputDataFrame.index):
-        n = inputDataFrame.values[i][0]
+    while i < len(classes.index):
+        n = classes.index[i]
         
-        anzahl = len(dataFrame[(dataFrame[rowName] == n)])
+        out = dataFrame[(dataFrame[rowName] == n)]
+        anzahl = len(out)
         
-        output.loc[i, rowName] = n
+        output.loc[i, rowName] = classes.values[i][0]
         output.loc[i,'Anzahl'] = anzahl
         
         i = i + 1
