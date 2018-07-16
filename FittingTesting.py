@@ -35,7 +35,7 @@ def startFitting(data):
             x = np.array(outputArray)[:,]
             y = np.array(klassen)
             
-            handoutKernel, trainging  = testDecisionTree(x, y, x, y)
+            handoutKernel, trainging  = testKernelSVM(x, y, x, y)
             resFittitng.loc[i,'Training'] = trainging
             resFittitng.loc[i,'HandOut'] = handoutKernel
 
