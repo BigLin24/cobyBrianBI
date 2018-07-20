@@ -25,7 +25,7 @@ def plotIt(obj, X, y, Filename):
     
     colors1 = colors.ListedColormap(['#0000FF', '#FF0000'])
     #colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#0000ff', '#000000', '#FFA500', '#008000'])
-    colors2 = colors.ListedColormap(['#DDDDFF', '#FF6060'])
+    colors2 = colors.ListedColormap(['#FFFFFF', '#FF6060'])
     
     # Plot: Linear SVM
     toP = obj.predict(uv)
