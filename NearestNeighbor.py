@@ -22,6 +22,7 @@ def fitNearestNeighbors(x_train, y_train):
     nb.fit(x_train, y_train)
     print("Finish Nornal Network: nn")
     print("--- %s seconds ---" % (time.time() - start_time))
+    return nb
 
 def scoreNearestNeighbors(x_test, y_test):
     print("Nearest Neighbors Score: " + str(nb.score(x_test, y_test)))

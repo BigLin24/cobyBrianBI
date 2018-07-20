@@ -17,23 +17,23 @@ def prepareData(x_prepare):
     return goodData
 
 
-def plotIt( X, y, Filename):
+def plotIt(obj, X, y, Filename):
     u, v = np.meshgrid(np.linspace(-30, 30),
-                   np.linspace(-10, 90))
+                   np.linspace(-10, 80))
     
     uv = np.c_[u.ravel(), v.ravel()]
     
     colors1 = colors.ListedColormap(['#0000FF', '#FF0000'])
     #colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#0000ff', '#000000', '#FFA500', '#008000'])
-    colors2 = colors.ListedColormap(['#9090FF', '#FF6060'])
+    colors2 = colors.ListedColormap(['#DDDDFF', '#FF6060'])
     
     # Plot: Linear SVM
-   # toP = obj.predict(uv)
-    #toP = toP.reshape(u.shape)
+    toP = obj.predict(uv)
+    toP = toP.reshape(u.shape)
     
-    #pl.figure(figsize=(7, 7)) 
-    #pl.contourf(u, v, toP, cmap=colors2)
-    pl.scatter(X[:,0], X[:,1], 10,c=y, cmap=colors1)
+    pl.figure(figsize=(7, 7)) 
+    pl.contourf(u, v, toP, cmap=colors2)
+    pl.scatter(X[:,0], X[:,1], 1,c=y, cmap=colors1)
     pl.savefig( Filename  , format='jpg', dpi=900)
     pl.show()
     
@@ -56,7 +56,24 @@ def barPlot( listeBar ):
     pl.show()
     
     
-    
+def test2():
+    A = np.array([[[ 0,  1],
+       [ 2,  3],
+       [ 4,  5],
+       [ 6,  7]],
+      [[ 8,  9],
+       [10, 11],
+       [12, 13],
+       [14, 15]],
+      [[16, 17],
+       [18, 19],
+       [20, 21],
+       [22, 23]]])
+    Flattened_X = A.flatten()
+    print(Flattened_X)
+    print(A.flatten(order="C"))
+    print(A.flatten(order="F"))
+    print(A.flatten(order="A"))
     
     
     

@@ -7,6 +7,7 @@ Created on Sun Jul 15 22:26:35 2018
 """
 
 import ClassifierLoader
+import graphviz
 from sklearn import tree
 
 obj = tree.DecisionTreeClassifier()
@@ -14,6 +15,7 @@ obj1 = obj
 
 def fitDecisionTree(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
+    return obj
 
 def scoreDecisionTree(x_test, y_test):
     output = score(obj, x_test, y_test)
@@ -40,5 +42,5 @@ def confusionMatrixDecisionTree(x_train, y_train, x_test, y_test):
     return output
 
 def plotDecisionTree(x_plot, y_plot):
-    plot(obj, x_plot, y_plot, "DecisionTree.jpg")
+    plot(obj, x_plot, y_plot, "DecisionTree")
     

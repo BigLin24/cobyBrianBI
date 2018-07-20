@@ -14,6 +14,7 @@ obj1 = obj
 
 def fitLinearSVM(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
+    return obj
 
 def scoreLinearSVM(x_test, y_test):
     score(obj, x_test, y_test)
@@ -26,4 +27,4 @@ def testLinearSVM(x_train, y_train, x_test, y_test):
     testing(obj, x_train, y_train, x_test, y_test)
 
 def plotLinearSVM(x_plot, y_plot):
-    plot(obj, x_plot, y_plot, "LinearSVM.jpg")
+    plot(obj, x_plot, y_plot, "LinearSVM")

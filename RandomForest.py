@@ -14,6 +14,7 @@ obj1 = obj
 
 def fitRandomForest(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
+    return obj
 
 def scoreRandomForest(x_test, y_test):
     score(obj, x_test, y_test)
@@ -26,4 +27,4 @@ def testRandomForest(x_train, y_train, x_test, y_test):
     testing(obj, x_train, y_train, x_test, y_test)
 
 def plotRandomForest(x_plot, y_plot):
-    plot(obj, x_plot, y_plot, "RandomForest.jpg")
+    plot(obj, x_plot, y_plot, "RandomForest")
