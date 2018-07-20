@@ -23,7 +23,8 @@ def plotIt( X, y, Filename):
     
     uv = np.c_[u.ravel(), v.ravel()]
     
-    colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#0000ff', '#000000', '#FFA500', '#008000'])
+    colors1 = colors.ListedColormap(['#0000FF', '#FF0000'])
+    #colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#0000ff', '#000000', '#FFA500', '#008000'])
     colors2 = colors.ListedColormap(['#9090FF', '#FF6060'])
     
     # Plot: Linear SVM
