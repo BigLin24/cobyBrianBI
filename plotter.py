@@ -84,7 +84,7 @@ def plotBars( barsHigh, filename ):
     pl.bar(xIndex, np.multiply(barsHigh, 100), bar_width,  color="blue")
     pl.xticks(xIndex) # labels get centered
     
-    pl.ylabel('Fehlerrate %')
+    pl.ylabel('Richtigkeit %')
     pl.xlabel('Faltungen')
     
     pl.axis([0, 11, 0, 100])
