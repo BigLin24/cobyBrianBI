@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+fit#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jul 15 22:41:20 2018
@@ -26,6 +26,10 @@ def predictAdaBoost(x_predict):
 
 def testAdaBoost(x_train, y_train, x_test, y_test):
     output = testing(obj, x_train, y_train, x_test, y_test)
+    return output
+
+def fittingGraphAdaBoost(data):
+    output = fitting(obj, data, 'fitting-AdaBoost')
     return output
 
 def crossValAdaBoost(x_train, y_train, iterable):

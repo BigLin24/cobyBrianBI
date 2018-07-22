@@ -14,6 +14,7 @@ obj1 = obj
 
 def fitLinearModel(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
+    return obj
 
 def scoreLinearModel(x_test, y_test):
     score(obj, x_test, y_test)

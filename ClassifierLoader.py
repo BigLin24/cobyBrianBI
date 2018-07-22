@@ -76,9 +76,51 @@ def testing(obj, x_train, y_train, nichtsX, nichtsY):
 
     return holdout, training
 
-"""
-def testing(obj, x_train, y_train, x_test, y_test):
-    obj1 = fit(obj, x_train, y_train)
-    scoreRes = score(obj1, x_test, y_test)
-    handoutRes = handOut(obj1, x_train, y_train)
-    return scoreRes, handoutRes"""
+
+def fitting(obj, data, filename):
+    i = 0
+    n = 100
+    outputArray = []
+    klassen = []
+    resFittitng = pd.DataFrame(columns=['HoldOut', 'Training'])
+    
+    while i < len(data.index):
+        temp1 = []
+        
+        if i >=  n:
+            
+            x = np.array(outputArray)[:,]
+            y = np.array(klassen)
+            
+            holdout, training  = testing(obj, x, y, x, y)
+            resFittitng.loc[i,'Training'] = 1 - training
+            resFittitng.loc[i,'HoldOut'] = 1 - holdout
+
+            
+            
+            n = n + 100
+
+        
+        
+        temp1.append(float(data['loc_x'].values[i] / 10))
+        temp1.append(float(data['loc_y'].values[i] / 10))
+        temp1.append(float(data['action_type'].values[i]))
+        temp1.append(float(data['combined_shot_type'].values[i]))
+        temp1.append(float(data['period'].values[i]))
+        temp1.append(float(data['playoffs'].values[i]))
+        temp1.append(float(data['shot_distance'].values[i]))
+        temp1.append(float(data['shot_type'].values[i]))
+        temp1.append(float(data['shot_zone_area'].values[i]))
+        temp1.append(float(data['shot_zone_range'].values[i]))
+        temp1.append(float(data['remaining_time'].values[i]))
+        temp1.append(float(data['season'].values[i]))
+        temp1.append(float(data['opponent'].values[i]))
+        klassen.append(int(data['shot_made_flag'].values[i]))
+        
+        outputArray.append(temp1)
+        
+        i = i + 1
+        
+    resFittitng.to_csv( filename + '.csv')
+    plotLinies(list(resFittitng.index), list(resFittitng['HoldOut']), list(resFittitng['Training']), filename + '.jpg')
+    return resFittitng

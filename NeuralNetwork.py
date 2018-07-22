@@ -27,6 +27,10 @@ def testNeuralNetwork(x_train, y_train, x_test, y_test):
     output = testing(obj, x_train, y_train, x_test, y_test)
     return output
 
+def fittingGraphNeuralNetwork(data):
+    output = fitting(obj, data, 'fitting-NeuralNetwork')
+    return output
+
 def crossValNeuralNetwork(x_train, y_train, iterable):
     output = crossVal(obj, x_train, y_train, iterable)
     return output

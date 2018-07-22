@@ -15,6 +15,7 @@ obj1 = obj
 
 def fitNaiveBayes(x_train, y_train):
     obj = fit(obj1, x_train, y_train )
+    return obj
 
 def scoreNaiveBayes(x_test, y_test):
     score(obj, x_test, y_test)

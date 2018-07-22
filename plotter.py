@@ -38,64 +38,26 @@ def plotIt(obj, X, y, Filename):
     pl.show()
     
 
-def barPlot( listeBar ):
-    N = len(listeBar)
-    ind = np.arange(N)
+def plotLinies(eintrage, holdoutWerte, trainingWerte, filename):
+    pl.ylabel('Fehlerrate %')
+    pl.xlabel('Einträge')
+    pl.axis([0, 27000, 0, 80])
     
-    #barWerte = np.array(dataFrame['Anzahl'].values).tolist()
+
+    pl.plot(eintrage, 
+            np.multiply(holdoutWerte, 100), 
+            color="red",
+            label='HoldOut')
     
-    barWerte = listeBar
- # the x locations for the groups
-    width = 0.35       # the width of the bars: can also be len(x) sequence
-    
-    p1 = pl.bar(barWerte, ind, width)
-    
-    pl.yticks(np.arange(0, 20, 10))
-    pl.legend(p1[0], 'Men')
-    
-    pl.show()
-    
-    
-def test2():
-    A = np.array([[[ 0,  1],
-       [ 2,  3],
-       [ 4,  5],
-       [ 6,  7]],
-      [[ 8,  9],
-       [10, 11],
-       [12, 13],
-       [14, 15]],
-      [[16, 17],
-       [18, 19],
-       [20, 21],
-       [22, 23]]])
-    Flattened_X = A.flatten()
-    print(Flattened_X)
-    print(A.flatten(order="C"))
-    print(A.flatten(order="F"))
-    print(A.flatten(order="A"))
+    pl.plot(eintrage, 
+        np.multiply(trainingWerte, 100), 
+        color="blue",
+        label='Training')
     
     
     
+    pl.legend()
     
-def test( ):
-    N = 5
-    menMeans = (20, 35, 30, 35, 27)
-    womenMeans = (25, 32, 34, 20, 25)
-    menStd = (2, 3, 4, 1, 2)
-    womenStd = (3, 5, 2, 3, 3)
-    ind = np.arange(N)    # the x locations for the groups
-    width = 0.35       # the width of the bars: can also be len(x) sequence
-    
-    p1 = pl.bar(ind, menMeans, width, yerr=menStd)
-    p2 = pl.bar(ind, womenMeans, width,
-             bottom=menMeans, yerr=womenStd)
-    
-    pl.ylabel('Scores')
-    pl.title('Scores by group and gender')
-    pl.xticks(ind, ('G1', 'G2', 'G3', 'G4', 'G5'))
-    pl.yticks(np.arange(0, 81, 10))
-    pl.legend((p1[0], p2[0]), ('Men', 'Women'))
+    pl.savefig( filename  , format='jpg', dpi=900)
     
     pl.show()
-    

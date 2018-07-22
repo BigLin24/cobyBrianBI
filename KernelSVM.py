@@ -27,8 +27,12 @@ def testKernelSVM(x_train, y_train, x_test, y_test):
     output = testing(obj, x_train, y_train, x_test, y_test)
     return output
 
-def crossValKernelSVM(x_train, y_train, iterable):
-    output = crossVal(obj, x_train, y_train, iterable)
+def testKernelSVM(data):
+    output = testing(obj, x_train, y_train, x_test, y_test)
+    return output
+
+def fittingGraphKernelSVM(data):
+    output = fitting(obj, data, 'fitting-KerneSVM')
     return output
 
 def handOutKernelSVM(x_train, y_train):

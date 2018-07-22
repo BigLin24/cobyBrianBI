@@ -36,8 +36,8 @@ def startFitting(data):
             y = np.array(klassen)
             
             handoutKernel, trainging  = testKernelSVM(x, y, x, y)
-            resFittitng.loc[i,'Training'] = trainging
-            resFittitng.loc[i,'HandOut'] = handoutKernel
+            resFittitng.loc[i,'Training'] = 1 - trainging
+            resFittitng.loc[i,'HandOut'] = 1 - handoutKernel
 
             
             
