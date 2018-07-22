@@ -33,7 +33,7 @@ def fittingGraphAdaBoost(data):
     return output
 
 def crossValAdaBoost(x_train, y_train, iterable):
-    output = crossVal(obj, x_train, y_train, iterable)
+    output = crossVal(obj, x_train, y_train, iterable, 'crossVal-AdaBoost')
     return output
 
 def handOutAdaBoost(x_train, y_train):

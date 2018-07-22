@@ -32,7 +32,7 @@ def fittingGraphNeuralNetwork(data):
     return output
 
 def crossValNeuralNetwork(x_train, y_train, iterable):
-    output = crossVal(obj, x_train, y_train, iterable)
+    output = crossVal(obj, x_train, y_train, iterable, 'crossVal-NeuralNetwork')
     return output
 
 def handOutNeuralNetwork(x_train, y_train):

@@ -35,8 +35,9 @@ def plot(obj, x_plot, y_plot, filename):
     obj.fit(X, y_plot)
     plotIt(obj, X, y_plot, filename + ".jpg")
 
-def crossVal(obj, x_train, y_train, iterable):
+def crossVal(obj, x_train, y_train, iterable, filename):
     output = cross_val_score(obj, x_train, y_train, cv=iterable)
+    plotBars(output, filename + '.jpg')
     return output
 
 def confusionMatrix(obj, x_train, y_train, x_test, y_test):

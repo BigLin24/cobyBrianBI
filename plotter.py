@@ -38,7 +38,7 @@ def plotIt(obj, X, y, Filename):
     pl.show()
     
 
-def plotLinies(eintrage, holdoutWerte, trainingWerte, filename):
+def plotLinies( eintrage, holdoutWerte, trainingWerte, filename ):
     pl.ylabel('Fehlerrate %')
     pl.xlabel('Einträge')
     pl.axis([0, 27000, 0, 80])
@@ -56,6 +56,47 @@ def plotLinies(eintrage, holdoutWerte, trainingWerte, filename):
     
     
     
+    pl.legend()
+    
+    pl.savefig( filename  , format='jpg', dpi=900)
+    
+    pl.show()
+   
+    
+def plotBars( barsHigh, filename ):
+    years = ('2010', '2011', '2012', '2013', '2014')
+    visitors = (1241, 50927, 162242, 222093, 296665 / 8 * 12)
+    
+    xIndex = []
+    average = []
+    i = 0
+    
+    
+    while i < len(barsHigh):
+        xIndex.append(i + 1)
+        average.append(np.average(barsHigh) * 100)
+        i = i +1 
+    
+
+    index = np.arange(len(visitors))
+    bar_width = 0.5
+    
+    pl.bar(xIndex, np.multiply(barsHigh, 100), bar_width,  color="blue")
+    pl.xticks(xIndex) # labels get centered
+    
+    pl.ylabel('Fehlerrate %')
+    pl.xlabel('Faltungen')
+    
+    pl.axis([0, 11, 0, 100])
+    
+    
+    
+    averageLabel = format(np.average(barsHigh) * 100, '.2f') 
+    pl.plot(xIndex, 
+        average, 
+        color="red",
+        label='Durchschnitt bei ' + str( averageLabel) + '%')
+
     pl.legend()
     
     pl.savefig( filename  , format='jpg', dpi=900)
