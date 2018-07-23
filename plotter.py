@@ -107,10 +107,21 @@ def plotBars( barsHigh, filename ):
 def plotItpredict( X, y, Filename):
     
     #Colors1 = colors.ListedColormap(['#0000FF', '#FF0000'])
-    colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#0000ff', '#000000', '#FFA500', '#008000'])
+    colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#ff0000', '#cdff9a', '#FFA500', '#008000'])
     
     pl.figure(figsize=(7, 7)) 
     pl.scatter(X[:,0], X[:,1], 10,c=y, cmap=colors1)
     pl.savefig( Filename  , format='jpg', dpi=900)
     pl.show()
     
+    
+def pieDiagramm( counterDataframe, Filename):
+    
+    colName = counterDataframe.columns[0]
+    xWerte = counterDataframe['Anzahl'].values
+    label = counterDataframe[colName].values
+    
+    pl.axis("equal") # Kreisdiagramm rund gestaltet (sonst Standard: oval!)
+    pl.pie(xWerte, labels=label, autopct="%1.1f%%")
+    pl.savefig( Filename  , format='jpg', dpi=900)
+    pl.show()
