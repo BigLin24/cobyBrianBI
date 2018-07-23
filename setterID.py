@@ -8,6 +8,15 @@ Created on Fri Jul 13 05:44:36 2018
 import pandas as pd 
 
 
+actionType = pd.read_csv('actionType.csv')
+combinedShotType = pd.read_csv('combinedShotType.csv')
+shotType = pd.read_csv('shotType.csv')
+shotZoneArea = pd.read_csv('shotZoneArea.csv')
+shotZoneRange = pd.read_csv('shotZoneRange.csv')
+season = pd.read_csv('season.csv')
+opponent = pd.read_csv('opponent.csv')
+
+
 
 def getIDforAction( name ):
     output = searchEngine(actionType, name)
