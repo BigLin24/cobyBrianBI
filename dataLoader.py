@@ -13,7 +13,8 @@ from sklearn import model_selection
 
 data = pd.read_csv('cleanedFileWithoutNaN.csv')
 predictData = pd.read_csv('cleanedFileJustNaN.csv')
-
+predictedData = pd.read_csv('shotFlagBerrechnet/AbaBoost.csv')
+predictedDataJustScored = predictedData[(predictedData['shot_made_flag'] == 1)]
 
 def convertToArrayData(data):
     i = 0
@@ -59,7 +60,8 @@ def convertToArrayClass(data):
 werte = convertToArrayData(data)
 klassen = convertToArrayClass(data)
 predict = convertToArrayData(predictData)
-
+predicted = convertToArrayData(predictedData)
+predictedJustScored = convertToArrayData(predictedDataJustScored)
 
 x_train, x_test, y_train, y_test = \
     model_selection.train_test_split(np.array(werte)[:,],\
