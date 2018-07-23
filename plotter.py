@@ -107,10 +107,10 @@ def plotBars( barsHigh, filename ):
 def plotItpredict( X, y, Filename):
     
     #Colors1 = colors.ListedColormap(['#0000FF', '#FF0000'])
-    colors1 = colors.ListedColormap(['#FF0000', '#00ff00', '#ff0000', '#cdff9a', '#FFA500', '#008000'])
+    colors1 = colors.ListedColormap(['#FF0000', '#0000ff', '#ffff00', '#00ff00','#000000', '#808080'])
     
     pl.figure(figsize=(7, 7)) 
-    pl.scatter(X[:,0], X[:,1], 10,c=y, cmap=colors1)
+    pl.scatter(X[:,0], X[:,1], 20,c=y, cmap=colors1)
     pl.savefig( Filename  , format='jpg', dpi=900)
     pl.show()
     
